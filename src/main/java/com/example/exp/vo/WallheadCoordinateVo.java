@@ -19,7 +19,7 @@ public class WallheadCoordinateVo {
     /**
      * 序号
      */
-    private String xh;
+    private Integer xh;
     /**
      * 坐标类型
      */
@@ -88,4 +88,8 @@ public class WallheadCoordinateVo {
      * 初始坐标系ID
      */
     private String cszbxid;
+    /**
+     * 登录人
+     */
+    private String loginer;
 }
