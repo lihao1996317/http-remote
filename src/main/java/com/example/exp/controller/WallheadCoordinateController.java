@@ -5,6 +5,7 @@ import com.example.exp.bean.WellNode;
 import com.example.exp.service.WallheadCoordinateService;
 import com.example.exp.vo.WallheadCoordinateVo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -49,9 +50,8 @@ public class WallheadCoordinateController {
 
     @PostMapping("/saveWallheadCoodintaeVo")
     public Map<String, String> saveWallheadCoodintaeVo(@RequestBody List<WallheadCoordinateVo> vo) {
-//        //组装共有数据
-//        List<JSONObject> tyList = new ArrayList<>();
-//        List<JSONObject> csList = new ArrayList<>();
+        List<JSONObject> tyList = new ArrayList<>();
+        List<JSONObject> csList = new ArrayList<>();
         //设置请求头
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -59,8 +59,10 @@ public class WallheadCoordinateController {
         headers.add("CallCode", "zjdzsj");
         headers.add("ActionType", "save");
         String url = "http://192.168.1.244:8050/DasService/DataService/ceshi/ceshi/WELL_NODE";
-        String tyObj = null;
-        String csObj = null;
+        String tyObj;
+        String csObj;
+        JSONObject tyJson;
+        JSONObject csJson;
         for (WallheadCoordinateVo singleVo : vo) {
             WellNode tyWellNode = new WellNode();
             WellNode csWellNode = new WellNode();
@@ -72,43 +74,39 @@ public class WallheadCoordinateController {
             tyWellNode.setLatitude(singleVo.getWd());
             tyWellNode.setLongtude(singleVo.getJd());
             tyWellNode.setRemark(singleVo.getBz());
-//            wellNode.setEffectiveDate(new Date());
-//            Calendar calendar = Calendar.getInstance();
-//            calendar.set(9999, 12, 31);
-//            wellNode.setExpiryDate(calendar.getTime());
-//            wellNode.setActiveInd("Y");
-//            wellNode.setRowCreatedDate(new Date());
+            tyWellNode.setRowChangedBy(singleVo.getV_login());
 
             //录入统一坐标信息
             tyWellNode.setCoordSystemId(singleVo.getTyzbxid());
             tyWellNode.setCoordAquisitionId(singleVo.getTyzbcjid());
-            tyWellNode.setCoordSystemId(singleVo.getTyjdid());
+            tyWellNode.setNode_id(singleVo.getTyjdid());
             tyWellNode.setNodePosition("TY");
-            JSONObject tyJson = (JSONObject) JSONObject.toJSON(tyWellNode);
-            //执行
-            HttpEntity<Object> tyEntity = new HttpEntity<>(tyJson.toString(), headers);
-            tyObj = restTemplate.postForObject(url, tyEntity, String.class);
+            tyJson = (JSONObject) JSONObject.toJSON(tyWellNode);
+            tyList.add(tyJson);
 
-            //录入初始坐标信息
+            //录入共有坐标信息
             csWellNode.setUwi(singleVo.getJh());
             csWellNode.setOriginalObsNo(singleVo.getXh());
             csWellNode.setLocationType(singleVo.getZblxid());
             csWellNode.setLatitude(singleVo.getWd());
             csWellNode.setLongtude(singleVo.getJd());
             csWellNode.setRemark(singleVo.getBz());
+            csWellNode.setRowChangedBy(singleVo.getV_login());
 
             //录入初始坐标信息
-            csWellNode.setCoordSystemId(singleVo.getTyzbxid());
-            csWellNode.setCoordAquisitionId(singleVo.getTyzbcjid());
-            csWellNode.setCoordSystemId(singleVo.getTyjdid());
+            csWellNode.setCoordSystemId(singleVo.getCszbxid());
+            csWellNode.setCoordAquisitionId(singleVo.getCszbcjid());
+            csWellNode.setNode_id(singleVo.getCsjdid());
             csWellNode.setNodePosition("CS");
-            JSONObject csJson = (JSONObject) JSONObject.toJSON(tyWellNode);
-            //执行
-            HttpEntity<Object> csEntity = new HttpEntity<>(tyJson.toString(), headers);
-            csObj = restTemplate.postForObject(url, csEntity, String.class);
+            csJson = (JSONObject) JSONObject.toJSON(csWellNode);
+            csList.add(csJson);
+
         }
         //执行
-
+        HttpEntity<Object> tyEntity = new HttpEntity<>(tyList.toString(), headers);
+        tyObj = restTemplate.postForObject(url, tyEntity, String.class);
+        HttpEntity<Object> csEntity = new HttpEntity<>(csList.toString(), headers);
+        csObj = restTemplate.postForObject(url, csEntity, String.class);
         log.debug("通用信息:" + tyObj + "/n" + "初始信息：" + csObj);
         HashMap<String, String> map = new HashMap<>();
         map.put("通用信息", tyObj);

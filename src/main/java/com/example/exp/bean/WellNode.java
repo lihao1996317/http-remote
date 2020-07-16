@@ -16,31 +16,31 @@ public class WellNode {
     /**
      * 节点ID
      */
-    private String nodeId;
+    private String node_id;
     /**
      * 有效标识
      */
-    private String activeInd = "Y";
+    private String active_ind = "Y";
     /**
      * 坐标质量
      */
-    private String coordinateQuality;
+    private String coordinate_quality;
     /**
      * 坐标采集ID
      */
-    private String coordAquisitionId;
+    private String coord_acquisition_id;
     /**
      * 坐标系ID
      */
-    private String coordSystemId;
+    private String coord_system_id;
     /**
      * 生效日期
      */
-    private Date effectiveDate = new Date();
+    private Date effective_date = new Date();
     /**
      * 失效日期
      */
-    private Date expiryDate = DateUtil.parseStrToDate("9999/12/31","9999/12/31");
+    private Date expiry_date = DateUtil.parseStrToDate("9999/12/31","9999/12/31");
     /**
      * 纬度
      */
@@ -48,51 +48,51 @@ public class WellNode {
     /**
      * 法定测量类型
      */
-    private String legalSurveyType;
+    private String legal_survey_type;
     /**
      * 本地坐标系ID
      */
-    private String localCoordSystemId;
+    private String local_coord_system_id;
     /**
      * 位置质量
      */
-    private String locationQuality;
+    private String location_quality;
     /**
      * 位置类型
      */
-    private String locationType;
+    private String location_type;
     /**
      * 经度
      */
-    private Double longtude;
+    private Double longitude;
     /**
      * 节点位置
      */
-    private String nodePosition;
+    private String node_position;
     /**
      * 原始序号
      */
-    private Integer originalObsNo;
+    private Integer original_obs_no;
     /**
      * 原始XY单位
      */
-    private String originalXyUom;
+    private String original_xy_uom;
     /**
      * 平台ID
      */
-    private String platformId;
+    private String platform_id;
     /**
      * 平台支持设施子类型
      */
-    private String platformSfSubType;
+    private String platform_sf_subtype;
     /**
      * PPDM_GUID
      */
-    private String ppdmGuid;
+    private String ppdm_guid;
     /**
      * 首选标识
      */
-    private String preferredInd;
+    private String preferred_ind;
     /**
      * 备注
      */
@@ -100,7 +100,7 @@ public class WellNode {
     /**
      * 选定序号
      */
-    private Integer selectedObsNo;
+    private Integer selected_obs_no;
     /**
      * 来源
      */
@@ -112,31 +112,31 @@ public class WellNode {
     /**
      * 行更改人
      */
-    private String rowChangedBy;
+    private String row_changed_by;
     /**
      * 行更改日期
      */
-    private Date rowChangedDate;
+    private Date row_changed_date;
     /**
      * 行创建人
      */
-    private String rowCreateBy;
+    private String row_created_by;
     /**
      * 行创建日期
      */
-    private Date rowCreatedDate = new Date();
+    private Date row_created_date = new Date();
     /**
      * 行有效日期
      */
-    private Date rowEffectiveDate;
+    private Date row_effective_date;
     /**
      * 行失效日期
      */
-    private Date rowExpriryDate;
+    private Date row_expiry_date;
     /**
      * 行质量
      */
-    private Date rowQuality;
+    private Date row_quality;
 
 
 }

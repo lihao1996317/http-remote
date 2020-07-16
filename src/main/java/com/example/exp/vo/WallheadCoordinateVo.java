@@ -91,5 +91,5 @@ public class WallheadCoordinateVo {
     /**
      * 登录人
      */
-    private String loginer;
+    private String v_login;
 }
