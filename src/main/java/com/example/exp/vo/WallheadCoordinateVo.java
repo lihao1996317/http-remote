@@ -47,7 +47,7 @@ public class WallheadCoordinateVo {
     /**
      * 初始横坐标
      */
-    private Double cshzb;
+    private Integer cshzb;
     /**
      * 经度
      */

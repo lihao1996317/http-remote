@@ -12,15 +12,11 @@ import java.util.Date;
  * 2020/7/15 17:56
  **/
 @Data
-public class WellNode {
+public class WellNode extends BaseBean{
     /**
      * 节点ID
      */
     private String node_id;
-    /**
-     * 有效标识
-     */
-    private String active_ind = "Y";
     /**
      * 坐标质量
      */
@@ -36,11 +32,7 @@ public class WellNode {
     /**
      * 生效日期
      */
-    private Date effective_date = new Date();
-    /**
-     * 失效日期
-     */
-    private Date expiry_date = DateUtil.parseStrToDate("9999/12/31","9999/12/31");
+    private String effective_date = DateUtil.parseDateToStr(new Date(), "yyyy-MM-dd");
     /**
      * 纬度
      */
@@ -86,10 +78,6 @@ public class WellNode {
      */
     private String platform_sf_subtype;
     /**
-     * PPDM_GUID
-     */
-    private String ppdm_guid;
-    /**
      * 首选标识
      */
     private String preferred_ind;
@@ -110,33 +98,12 @@ public class WellNode {
      */
     private String uwi;
     /**
-     * 行更改人
-     */
-    private String row_changed_by;
-    /**
-     * 行更改日期
-     */
-    private Date row_changed_date;
-    /**
-     * 行创建人
-     */
-    private String row_created_by;
-    /**
      * 行创建日期
      */
-    private Date row_created_date = new Date();
+    private String row_created_date = DateUtil.parseDateToStr(new Date(), "yyyy-MM-dd");
+    ;
     /**
      * 行有效日期
      */
-    private Date row_effective_date;
-    /**
-     * 行失效日期
-     */
-    private Date row_expiry_date;
-    /**
-     * 行质量
-     */
-    private Date row_quality;
-
-
+    private String row_effective_date = DateUtil.parseDateToStr(new Date(), "yyyy-MM-dd");
 }
