@@ -2,15 +2,16 @@ package com.example.exp.result;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * RunInfos
  *
  * @author xzr
- * 2020/7/20 8:58
+ * 2020/7/20 16:33
  **/
 @Data
 public class RunInfos {
-    private String timeCost;
-    private String title;
-
+    private List<Irrelevant> irrelevants;
+    private SqlText sqlText;
 }

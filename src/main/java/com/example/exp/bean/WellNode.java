@@ -30,10 +30,6 @@ public class WellNode extends BaseBean{
      */
     private String coord_system_id;
     /**
-     * 生效日期
-     */
-    private String effective_date = DateUtil.parseDateToStr(new Date(), "yyyy-MM-dd");
-    /**
      * 纬度
      */
     private Double latitude;
@@ -97,13 +93,4 @@ public class WellNode extends BaseBean{
      * 井ID
      */
     private String uwi;
-    /**
-     * 行创建日期
-     */
-    private String row_created_date = DateUtil.parseDateToStr(new Date(), "yyyy-MM-dd");
-    ;
-    /**
-     * 行有效日期
-     */
-    private String row_effective_date = DateUtil.parseDateToStr(new Date(), "yyyy-MM-dd");
 }

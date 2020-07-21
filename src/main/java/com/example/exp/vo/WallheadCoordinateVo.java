@@ -92,4 +92,8 @@ public class WallheadCoordinateVo {
      * 登录人
      */
     private String v_login;
+    /**
+     * rowState 执行标识
+     */
+    private String rowState;
 }

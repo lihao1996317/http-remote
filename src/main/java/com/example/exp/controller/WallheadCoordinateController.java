@@ -37,7 +37,7 @@ public class WallheadCoordinateController {
         HashMap<Object, Object> map = new HashMap<>();
         map.put("jh", jh);
         map.put("dp", dq);
-        String url = "http://192.168.1.244:8050/DasService/DataService/zjdzfasj/basic/jkzb/jkzb";
+        String url = "http://192.168.1.244:8050/DasService/DataService/ceshi/ceshi/WELL_NODE";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.add("Accept", MediaType.APPLICATION_JSON.toString());
@@ -48,7 +48,6 @@ public class WallheadCoordinateController {
         String body = exchange.getBody();
         //转json
         JSONObject jsonObject = JSONObject.parseObject(body);
-        Object o = jsonObject.get("data");
         log.debug(body);
 
         //返回给前端的vo对象
@@ -87,6 +86,7 @@ public class WallheadCoordinateController {
             tyWellNode.setCoord_acquisition_id(singleVo.getTyzbcjid());
             tyWellNode.setNode_id(singleVo.getTyjdid());
             tyWellNode.setNode_position("TY");
+            tyWellNode.setRowState(singleVo.getRowState());
             tyJson = (JSONObject) JSONObject.toJSON(tyWellNode);
             tyList.add(tyJson);
 
@@ -104,6 +104,7 @@ public class WallheadCoordinateController {
             csWellNode.setCoord_acquisition_id(singleVo.getCszbcjid());
             csWellNode.setNode_id(singleVo.getCsjdid());
             csWellNode.setNode_position("CS");
+            csWellNode.setRowState(singleVo.getRowState());
             csJson = (JSONObject) JSONObject.toJSON(csWellNode);
             csList.add(csJson);
 
@@ -112,6 +113,7 @@ public class WallheadCoordinateController {
             csAcauisition.setHorizontal_accuracy(singleVo.getCshzb());
             csAcauisition.setVertical_accuracy(singleVo.getCszzb());
             csAcauisition.setRow_created_by(singleVo.getV_login());
+            csAcauisition.setRowState(singleVo.getRowState());
             csAcauisitionJson = (JSONObject) JSONObject.toJSON(csAcauisition);
             csacquisitionList.add(csAcauisitionJson);
 
@@ -120,6 +122,7 @@ public class WallheadCoordinateController {
             tyAcauisition.setHorizontal_accuracy(singleVo.getTyhzb());
             tyAcauisition.setVertical_accuracy(singleVo.getTyzzb());
             tyAcauisition.setRow_created_by(singleVo.getV_login());
+            tyAcauisition.setRowState(singleVo.getRowState());
             tyAcauisitionJson = (JSONObject) JSONObject.toJSON(tyAcauisition);
             tyacquisitionList.add(tyAcauisitionJson);
 
@@ -128,7 +131,6 @@ public class WallheadCoordinateController {
         //执行well_node表插入
         String tyObj = HttpUtil.httpPost(tyList.toString(), UrlConstant.WELL_NODE_URL);
         String csObj = HttpUtil.httpPost(csList.toString(), UrlConstant.WELL_NODE_URL);
-
         //执行CsCoordAcauisition表插入
         String tyAcauisitionObj = HttpUtil.httpPost(tyacquisitionList.toString(), UrlConstant.CS_COORD_ACQUISITION_URL);
         String csAcauisitionObj = HttpUtil.httpPost(csacquisitionList.toString(), UrlConstant.CS_COORD_ACQUISITION_URL);

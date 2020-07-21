@@ -2,13 +2,15 @@ package com.example.exp.result;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
- * ReceiveData
+ * resultInfo
  *
  * @author xzr
- * 2020/7/20 8:54
+ * 2020/7/20 16:32
  **/
 @Data
-public class ReceiveData {
+public class ResultInfo {
 
 }

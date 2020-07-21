@@ -46,10 +46,6 @@ public class CsCoordAcauisition extends BaseBean{
      */
     private Integer digitized_scale;
     /**
-     * 生效日期
-     */
-    private String effective_date = DateUtil.parseDateToStr(new Date(), "yyyy-MM-dd");
-    /**
      * 水平精度
      */
     private Integer horizontal_accuracy;
@@ -81,13 +77,4 @@ public class CsCoordAcauisition extends BaseBean{
      * 垂直精度原始单位
      */
     private String vertical_accuracy_ouom;
-    /**
-     * 行创建日期
-     */
-    private String row_created_date = DateUtil.parseDateToStr(new Date(), "yyyy-MM-dd");
-    ;
-    /**
-     * 行有效日期
-     */
-    private String row_effective_date = DateUtil.parseDateToStr(new Date(), "yyyy-MM-dd");
 }
