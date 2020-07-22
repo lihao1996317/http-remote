@@ -25,7 +25,7 @@ public class WellDirSrvy extends BaseBean{
     /**
      * 来源
      */
-    private String source;
+    private String source = "BDZB";
 
     /**
      * 方位坐标系ID
